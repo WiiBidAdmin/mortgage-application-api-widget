@@ -26,8 +26,8 @@
         apiWidgetButton.innerText = "Apply for Mortgage";
 
         apiWidgetButton.style.cursor = "pointer";
-        apiWidgetButton.style.backgroundColor = "#399af2";
-        apiWidgetButton.style.color = "rgba(255, 255, 255, 0.85)";
+        apiWidgetButton.style.backgroundColor = "#fff";
+        apiWidgetButton.style.color = "#399af2";
         apiWidgetButton.style.border = "1px solid #399af2";
         apiWidgetButton.style.display = "inline-block";
         apiWidgetButton.style.whiteSpace = "nowrap";
@@ -47,6 +47,22 @@
         apiWidgetButton.style.outline = "none";
         apiWidgetButton.style.boxShadow = "0 5px 10px rgba(57, 154, 242, .4)";
         apiWidgetButton.style.fontFamily = "Poppins, sans-serif";
+
+        apiWidgetButton.addEventListener("mouseover", () => {
+            apiWidgetButton.style.color = "#fff";
+            apiWidgetButton.style.backgroundColor = "#399af2";
+            apiWidgetButton.style.border = "1px solid #2b93f1";
+            apiWidgetButton.style.boxShadow = "0 15px 20px rgba(57, 154, 242, .4)";
+            apiWidgetButton.style.textDecoration = "none";
+        });
+
+        apiWidgetButton.addEventListener("mouseout", () => {
+            apiWidgetButton.style.color = "#399af2";
+            apiWidgetButton.style.backgroundColor = "#fff";
+            apiWidgetButton.style.border = "1px solid #399af2";
+            apiWidgetButton.style.boxShadow = "none";
+            apiWidgetButton.style.textDecoration = "none";
+        });
 
         apiWidgetButton.addEventListener("click", () => {
             this.apiWidgetContainer.style.transform = "scale(1)";
@@ -97,14 +113,17 @@
         var row1Col1Div = document.createElement("div");
         var row1Col1FormGroupDiv = document.createElement("div");
         var firstNameInput = document.createElement("input");
+        var firstNameValidation = document.createElement("span");
         var row2Div = document.createElement("div");
         var row2Col1Div = document.createElement("div");
         var row2Col1FormGroupDiv = document.createElement("div");
         var lastNameInput = document.createElement("input");
+        var lastNameValidation = document.createElement("span");
         var row3Div = document.createElement("div");
         var row3Col1Div = document.createElement("div");
         var row3Col1FormGroupDiv = document.createElement("div");
         var emailInput = document.createElement("input");
+        var emailValidation = document.createElement("span");
         var row4Div = document.createElement("div");
         var row4Col1Div = document.createElement("div");
         var row4Col1FormGroupDiv = document.createElement("div");
@@ -112,10 +131,12 @@
         var applicationTypeOption1 = document.createElement("option");
         var applicationTypeOption2 = document.createElement("option");
         var applicationTypeOption3 = document.createElement("option");
+        var applicationTypeValidation = document.createElement("span");
         var row5Div = document.createElement("div");
         var row5Col1Div = document.createElement("div");
         var row5Col1FormGroupDiv = document.createElement("div");
         var requestedLoanAmountInput = document.createElement("input");
+        var requestedLoanAmountValidation = document.createElement("span");
         var rowConsentDiv = document.createElement("div");
         var rowConsentColDiv = document.createElement("div");
         var consentDiv = document.createElement("div");
@@ -161,14 +182,17 @@
         row1Div.appendChild(row1Col1Div);
         row1Col1Div.appendChild(row1Col1FormGroupDiv);
         row1Col1FormGroupDiv.appendChild(firstNameInput);
+        row1Col1FormGroupDiv.appendChild(firstNameValidation);
         cardBackForm.appendChild(row2Div);
         row2Div.appendChild(row2Col1Div);
         row2Col1Div.appendChild(row2Col1FormGroupDiv);
         row2Col1FormGroupDiv.appendChild(lastNameInput);
+        row2Col1FormGroupDiv.appendChild(lastNameValidation);
         cardBackForm.appendChild(row3Div);
         row3Div.appendChild(row3Col1Div);
         row3Col1Div.appendChild(row3Col1FormGroupDiv);
         row3Col1FormGroupDiv.appendChild(emailInput);
+        row3Col1FormGroupDiv.appendChild(emailValidation);
         cardBackForm.appendChild(row4Div);
         row4Div.appendChild(row4Col1Div);
         row4Col1Div.appendChild(row4Col1FormGroupDiv);
@@ -176,10 +200,12 @@
         applicationTypeSelect.appendChild(applicationTypeOption1);
         applicationTypeSelect.appendChild(applicationTypeOption2);
         applicationTypeSelect.appendChild(applicationTypeOption3);
+        row4Col1FormGroupDiv.appendChild(applicationTypeValidation);
         cardBackForm.appendChild(row5Div);
         row5Div.appendChild(row5Col1Div);
         row5Col1Div.appendChild(row5Col1FormGroupDiv);
         row5Col1FormGroupDiv.appendChild(requestedLoanAmountInput);
+        row5Col1FormGroupDiv.appendChild(requestedLoanAmountValidation);
         cardBackForm.appendChild(rowConsentDiv);
         rowConsentDiv.appendChild(rowConsentColDiv);
         rowConsentColDiv.appendChild(consentDiv);
@@ -222,7 +248,7 @@
         cardDiv.style.position = "relative";
 
         cardFrontDiv.style.zIndex = "2";
-        cardFrontDiv.style.border = "2px solid #399af2";
+        cardFrontDiv.style.border = "none";
         cardFrontDiv.style.background = "#fff";
         cardFrontDiv.style.boxShadow = "0 10px 40px 0 rgba(18, 106, 211, .07), 0 2px 9px 0 rgba(18, 106, 211, .06)";
         cardFrontDiv.style.backfaceVisibility = "hidden";
@@ -289,6 +315,7 @@
         <line x1="1" y1="11" x2="11" y2="1" stroke="#fff" stroke-width="2"/>
         <line x1="1" y1="1" x2="11" y2="11" stroke="#fff" stroke-width="2"/></svg>`;
 
+        cardFrontBodyDiv.id = "api-widget-card-front-body";
         cardFrontBodyDiv.style.padding = "1.25rem";
         cardFrontBodyDiv.style.height = "400px";
 
@@ -397,7 +424,7 @@
 
         cardBackDiv.style.transform = "rotateY(180deg)";
         cardBackDiv.style.zIndex = "3";
-        cardBackDiv.style.border = "2px solid #399af2";
+        cardBackDiv.style.border = "none";
         cardBackDiv.style.background = "#fff";
         cardBackDiv.style.boxShadow = "0 10px 40px 0 rgba(18, 106, 211, .07), 0 2px 9px 0 rgba(18, 106, 211, .06)";
         cardBackDiv.style.backfaceVisibility = "hidden";
@@ -464,6 +491,7 @@
         <line x1="1" y1="11" x2="11" y2="1" stroke="#fff" stroke-width="2"/>
         <line x1="1" y1="1" x2="11" y2="11" stroke="#fff" stroke-width="2"/></svg>`;
 
+        cardBackBodyDiv.id = "api-widget-card-back-body";
         cardBackBodyDiv.style.padding = "1.25rem";
         cardBackBodyDiv.style.height = "400px";
 
@@ -473,23 +501,22 @@
             e.preventDefault();
 
             const data = {
-                ApiWidgetFirstName: $('#ApiWidgetFirstName').val(),
-                ApiWidgetLastName: $('#ApiWidgetLastName').val(),
-                ApiWidgetEmail: $('#ApiWidgetEmail').val(),
-                ApiWidgetApplicationType: $('#ApiWidgetApplicationType').val(),
-                ApiWidgetRequestedLoanAmount: $('#ApiWidgetRequestedLoanAmount').val()
+                ApiWidgetFirstName: document.getElementById('ApiWidgetFirstName').value,
+                ApiWidgetLastName: document.getElementById('ApiWidgetLastName').value,
+                ApiWidgetEmail: document.getElementById('ApiWidgetEmail').value,
+                ApiWidgetApplicationType: document.getElementById('ApiWidgetApplicationType').value,
+                ApiWidgetRequestedLoanAmount: document.getElementById('ApiWidgetRequestedLoanAmount').value
             };
 
-            postData('https://mortgageexchangewebapp.azurewebsites.net/api/ApplicationApi', data)
+            mortgageApplicationApiWidget.postData('https://mortgageexchangewebapp.azurewebsites.net/api/ApplicationApi', data)
                 .then((result) => {
-                    loadingGifDiv.style.display = "none";
                     resultContainer.innerHTML = result;
                 })
                 .catch((err) => {
-                    console.error(err);
+                    resultContainer.innerHTML = "Request failed.";
                 })
                 .finally(() => {
-                    console.log('always called');
+                    loadingGifDiv.style.display = "none";
                 });
         });
 
@@ -527,6 +554,17 @@
         firstNameInput.style.overflow = "visible";
         firstNameInput.style.boxSizing = "border-box";
 
+        firstNameInput.addEventListener("change", () => {
+            mortgageApplicationApiWidget.validateFirstName(this.value);
+            mortgageApplicationApiWidget.resizeDialog();
+        });
+
+        firstNameValidation.id = "ApiWidgetFirstNameValidation";
+        firstNameValidation.style.display = "none";
+        firstNameValidation.style.color = "#ed5565";
+        firstNameValidation.style.fontSize = "0.9rem";
+        firstNameValidation.style.paddingLeft = "10px";
+
         row2Div.style.display = "flex";
         row2Div.style.flexWrap = "wrap";
         row2Div.style.marginRight = "-15px";
@@ -561,6 +599,17 @@
         lastNameInput.style.overflow = "visible";
         lastNameInput.style.boxSizing = "border-box";
 
+        lastNameInput.addEventListener("change", () => {
+            mortgageApplicationApiWidget.validateLastName(this.value);
+            mortgageApplicationApiWidget.resizeDialog();
+        });
+
+        lastNameValidation.id = "ApiWidgetLastNameValidation";
+        lastNameValidation.style.display = "none";
+        lastNameValidation.style.color = "#ed5565";
+        lastNameValidation.style.fontSize = "0.9rem";
+        lastNameValidation.style.paddingLeft = "10px";
+
         row3Div.style.display = "flex";
         row3Div.style.flexWrap = "wrap";
         row3Div.style.marginRight = "-15px";
@@ -594,6 +643,17 @@
         emailInput.style.fontFamily = "inherit";
         emailInput.style.overflow = "visible";
         emailInput.style.boxSizing = "border-box";
+
+        emailInput.addEventListener("change", () => {
+            mortgageApplicationApiWidget.validateEmail(this.value);
+            mortgageApplicationApiWidget.resizeDialog();
+        });
+
+        emailValidation.id = "ApiWidgetEmailValidation";
+        emailValidation.style.display = "none";
+        emailValidation.style.color = "#ed5565";
+        emailValidation.style.fontSize = "0.9rem";
+        emailValidation.style.paddingLeft = "10px";
 
         row4Div.style.display = "flex";
         row4Div.style.flexWrap = "wrap";
@@ -636,6 +696,17 @@
         applicationTypeOption3.value = "1";
         applicationTypeOption3.text = "Refinance";
 
+        applicationTypeSelect.addEventListener("change", () => {
+            mortgageApplicationApiWidget.validateApplicationType(this.value);
+            mortgageApplicationApiWidget.resizeDialog();
+        });
+
+        applicationTypeValidation.id = "ApiWidgetApplicationTypeValidation";
+        applicationTypeValidation.style.display = "none";
+        applicationTypeValidation.style.color = "#ed5565";
+        applicationTypeValidation.style.fontSize = "0.9rem";
+        applicationTypeValidation.style.paddingLeft = "10px";
+
         row5Div.style.display = "flex";
         row5Div.style.flexWrap = "wrap";
         row5Div.style.marginRight = "-15px";
@@ -669,6 +740,17 @@
         requestedLoanAmountInput.style.fontFamily = "inherit";
         requestedLoanAmountInput.style.overflow = "visible";
         requestedLoanAmountInput.style.boxSizing = "border-box";
+
+        requestedLoanAmountInput.addEventListener("change", () => {
+            mortgageApplicationApiWidget.validateRequestedLoanAmount(this.value);
+            mortgageApplicationApiWidget.resizeDialog();
+        });
+
+        requestedLoanAmountValidation.id = "ApiWidgetRequestedLoanAmountValidation";
+        requestedLoanAmountValidation.style.display = "none";
+        requestedLoanAmountValidation.style.color = "#ed5565";
+        requestedLoanAmountValidation.style.fontSize = "0.9rem";
+        requestedLoanAmountValidation.style.paddingLeft = "10px";
 
         rowConsentDiv.style.display = "flex";
         rowConsentDiv.style.flexWrap = "wrap";
@@ -775,9 +857,14 @@
         createApplicationButton.style.outline = "none";
         createApplicationButton.disabled = true;
 
-        createApplicationButton.addEventListener("click", () => {
-            cardBackForm.style.display = "none";
-            loadingGifDiv.style.display = "block";
+        createApplicationButton.addEventListener("click", (e) => {
+            if (mortgageApplicationApiWidget.validate()) {
+                cardBackForm.style.display = "none";
+                loadingGifDiv.style.display = "block";
+            }
+            else {
+                e.preventDefault();
+            }
         });
 
         cancelButton.type = "button";
@@ -830,9 +917,9 @@
         let url = URL.createObjectURL(blob);
 
         loadingGifDiv.style.display = "none";
-
         loadingGifImg.src = url;
         loadingGifImg.width = "160";
+        //loadingGifImg.src = "/Content/dashboard/images/loading.gif";
 
         resultContainer.id = "api-widget-result";
         resultContainer.style.padding = "40px";
@@ -878,24 +965,267 @@
     }
 }
 
-function initializeApiWidget() {
-    return new ApiWidget();
-}
+var mortgageApplicationApiWidget = {
+    initializeApiWidget: function () {
+        return new ApiWidget();
+    },
+    postData: async function (url = '', data = {}) {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': mortgageApplicationApiWidgetApiKey
+            },
+            body: JSON.stringify(data),
+        });
 
-initializeApiWidget();
+        if (!response.ok) {
+            throw new Error('Network response was not OK');
+        }
 
-async function postData(url = '', data = {}) {
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
+        return response.json();
+    },
+    validate: function () {
+        var isValidFirstName = mortgageApplicationApiWidget.validateFirstName();
+        var isValidLastName = mortgageApplicationApiWidget.validateLastName();
+        var isValidEmail = mortgageApplicationApiWidget.validateEmail();
+        var isValidApplicationType = mortgageApplicationApiWidget.validateApplicationType();
+        var isValidRequestedLoanAmount = mortgageApplicationApiWidget.validateRequestedLoanAmount();
 
-    if (!response.ok) {
-        throw new Error('Network response was not OK');
+        var isValid = isValidFirstName && isValidLastName && isValidEmail && isValidApplicationType && isValidRequestedLoanAmount;
+        mortgageApplicationApiWidget.resizeDialog();
+
+        return isValid;
+    },
+    validateFirstName: function () {
+        var firstName = document.getElementById('ApiWidgetFirstName').value;
+        var firstNameValidation = document.getElementById('ApiWidgetFirstNameValidation');
+
+        var isValid = mortgageApplicationApiWidget.validateInputRequired(firstName);
+
+        if (!isValid) {
+            firstNameValidation.innerText = "First Name is mandatory.";
+            firstNameValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        isValid = mortgageApplicationApiWidget.validateInputLength(firstName, 50);
+
+        if (!isValid) {
+            firstNameValidation.innerText = "First Name maximum length is 50.";
+            firstNameValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        isValid = mortgageApplicationApiWidget.validateInputFormat(firstName, /^[\u0000-\u007F]*$/g);
+
+        if (!isValid) {
+            firstNameValidation.innerText = "First Name contains unsupported characters.";
+            firstNameValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        firstNameValidation.innerText = "";
+        firstNameValidation.style.display = "none";
+
+        return isValid;
+    },
+    validateLastName: function () {
+        var lastName = document.getElementById('ApiWidgetLastName').value;
+        var lastNameValidation = document.getElementById('ApiWidgetLastNameValidation');
+
+        var isValid = mortgageApplicationApiWidget.validateInputRequired(lastName);
+
+        if (!isValid) {
+            lastNameValidation.innerText = "Last Name is mandatory.";
+            lastNameValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        isValid = mortgageApplicationApiWidget.validateInputLength(lastName, 50);
+
+        if (!isValid) {
+            lastNameValidation.innerText = "Last Name maximum length is 50.";
+            lastNameValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        isValid = mortgageApplicationApiWidget.validateInputFormat(lastName, /^[\u0000-\u007F]*$/g);
+
+        if (!isValid) {
+            lastNameValidation.innerText = "Last Name contains unsupported characters.";
+            lastNameValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        lastNameValidation.innerText = "";
+        lastNameValidation.style.display = "none";
+
+        return isValid;
+    },
+    validateEmail: function () {
+        var email = document.getElementById('ApiWidgetEmail').value;
+        var emailValidation = document.getElementById('ApiWidgetEmailValidation');
+
+        var isValid = mortgageApplicationApiWidget.validateInputRequired(email);
+
+        if (!isValid) {
+            emailValidation.innerText = "Email is mandatory.";
+            emailValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        isValid = mortgageApplicationApiWidget.validateInputLength(email, 256);
+
+        if (!isValid) {
+            emailValidation.innerText = "Email maximum length is 256.";
+            emailValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        isValid = mortgageApplicationApiWidget.validateInputFormat(email, /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/g);
+
+        if (!isValid) {
+            emailValidation.innerText = "Email format is not correct.";
+            emailValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        emailValidation.innerText = "";
+        emailValidation.style.display = "none";
+
+        return isValid;
+    },
+    validateApplicationType: function () {
+        var applicationType = document.getElementById('ApiWidgetApplicationType').value;
+        var applicationTypeValidation = document.getElementById('ApiWidgetApplicationTypeValidation');
+
+        var isValid = mortgageApplicationApiWidget.validateSelectRequired(applicationType);
+
+        if (!isValid) {
+            applicationTypeValidation.innerText = "Application Type is mandatory.";
+            applicationTypeValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        applicationTypeValidation.innerText = "";
+        applicationTypeValidation.style.display = "none";
+
+        return isValid;
+    },
+    validateRequestedLoanAmount: function () {
+        var requestedLoanAmount = document.getElementById('ApiWidgetRequestedLoanAmount').value;
+        var requestedLoanAmountValidation = document.getElementById('ApiWidgetRequestedLoanAmountValidation');
+
+        var isValid = mortgageApplicationApiWidget.validateInputRequired(requestedLoanAmount);
+
+        if (!isValid) {
+            requestedLoanAmountValidation.innerText = "Loan Amount is mandatory.";
+            requestedLoanAmountValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        isValid = mortgageApplicationApiWidget.validateInputLength(requestedLoanAmount, 12);
+
+        if (!isValid) {
+            requestedLoanAmountValidation.innerText = "Loan Amount maximum length is 12.";
+            requestedLoanAmountValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        isValid = mortgageApplicationApiWidget.validateInputFormat(requestedLoanAmount, /^\+?(0|[1-9]\d*)$/g);
+
+        if (!isValid) {
+            requestedLoanAmountValidation.innerText = "Loan Amount must be a positive number.";
+            requestedLoanAmountValidation.style.display = "block";
+
+            return isValid;
+        }
+
+        requestedLoanAmountValidation.innerText = "";
+        requestedLoanAmountValidation.style.display = "none";
+
+        return isValid;
+    },
+    validateInputRequired: function (inputText) {
+        var isValid = false;
+
+        if (inputText.trim()) {
+            isValid = true;
+        }
+
+        return isValid;
+    },
+    validateSelectRequired: function (selectValue) {
+        var isValid = selectValue > -1;
+
+        return isValid;
+    },
+    validateInputLength: function (inputText, maxLength) {
+        var isValid = inputText.length <= maxLength;
+
+        return isValid;
+    },
+    validateInputFormat: function (inputText, pattern) {
+        var isValid = false;
+        var result = inputText.match(pattern);
+
+        if (result) {
+            isValid = true;
+        }
+
+        return isValid;
+    },
+
+    resizeDialog: function () {
+        var apiWidgetContainer = document.getElementById('api-widget-container');
+        var apiWidgetCardFront = document.getElementById('api-widget-card-front-body');
+        var apiWidgetCardBack = document.getElementById('api-widget-card-back-body');
+
+        var firstNameValidation = document.getElementById('ApiWidgetFirstNameValidation');
+        var lastNameValidation = document.getElementById('ApiWidgetLastNameValidation');
+        var emailValidation = document.getElementById('ApiWidgetEmailValidation');
+        var applicationTypeValidation = document.getElementById('ApiWidgetApplicationTypeValidation');
+        var requestedLoanAmountValidation = document.getElementById('ApiWidgetRequestedLoanAmountValidation');
+
+        var height = 0;
+
+        if (firstNameValidation.innerText != "") {
+            height = height + 10;
+        }
+
+        if (lastNameValidation.innerText != "") {
+            height = height + 10;
+        }
+
+        if (emailValidation.innerText != "") {
+            height = height + 10;
+        }
+
+        if (applicationTypeValidation.innerText != "") {
+            height = height + 10;
+        }
+
+        if (requestedLoanAmountValidation.innerText != "") {
+            height = height + 10;
+        }
+
+        apiWidgetContainer.style.height = 480 + height + "px";
+        apiWidgetCardFront.style.height = 400 + height + "px";
+        apiWidgetCardBack.style.height = 400 + height + "px";
     }
+};
 
-    return response.json();
-}
+mortgageApplicationApiWidget.initializeApiWidget();
